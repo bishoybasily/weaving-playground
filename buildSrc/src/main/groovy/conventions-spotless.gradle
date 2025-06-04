@@ -1,0 +1,17 @@
+plugins {
+    id 'com.diffplug.spotless'
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+
+        googleJavaFormat()
+        formatAnnotations()
+
+        targetExclude("build/**/*.java")
+
+        toggleOffOn()
+    }
+}
