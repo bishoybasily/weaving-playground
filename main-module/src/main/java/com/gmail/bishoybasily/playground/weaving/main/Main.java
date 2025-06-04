@@ -8,7 +8,8 @@ public class Main {
     // System.setProperty("calculator_subtract_feature", "false");
 
     // feature flag toggle at runtime
-    // java -jar -Dcalculator_subtract_feature=false main-module/build/libs/main-module-1.0-SNAPSHOT.jar
+    // java -jar -Dcalculator_subtract_feature=false
+    // main-module/build/libs/main-module-1.0-SNAPSHOT.jar
 
     var calculator = new Calculator();
     System.out.println(calculator.sum("5", "3"));
