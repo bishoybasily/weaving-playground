@@ -1,4 +1,0 @@
-plugins {
-    id 'io.freefair.aspectj'
-}
-
