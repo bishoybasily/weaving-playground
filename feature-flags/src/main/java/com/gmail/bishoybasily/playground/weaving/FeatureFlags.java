@@ -5,7 +5,7 @@ public class FeatureFlags {
   public static final String FEATURE_CALCULATOR_SUBTRACT = "calculator_subtract_feature";
 
   public static boolean isFeatureEnabled(String feature) {
-    return System.getProperty(FEATURE_CALCULATOR_SUBTRACT).equals("true");
+    return System.getProperty(feature).equals("true");
   }
 
   public static boolean isFeatureDisabled(String feature) {
