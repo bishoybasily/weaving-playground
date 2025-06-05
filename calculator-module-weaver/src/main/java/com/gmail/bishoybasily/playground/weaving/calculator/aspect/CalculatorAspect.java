@@ -9,12 +9,12 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class CalculatorAspect {
 
-  private final DifferentCalculator differentCalculator;
+  private final CalculatorDifferent calculatorDifferent;
 
   public static final String FEATURE_CALCULATOR_SUBTRACT = "calculator_subtract_feature";
 
   public CalculatorAspect() {
-    differentCalculator = new DifferentCalculator();
+    calculatorDifferent = new CalculatorDifferent();
   }
 
   @Around(
@@ -29,6 +29,6 @@ public class CalculatorAspect {
     if ("false".equals(getProperty(FEATURE_CALCULATOR_SUBTRACT)))
       return joinPoint.proceed(new Object[] {num1, num2});
 
-    return differentCalculator.subtract(num1, num2);
+    return calculatorDifferent.subtract(num1, num2);
   }
 }
