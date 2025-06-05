@@ -13,6 +13,7 @@ class ConventionsWeaving implements Plugin<Project> {
             def wovenModule = module.rootProject.allprojects.find { it.name == wovenModuleName }
             // 2- if a woven module is found, only include its main sources "compileOnly"
             if (wovenModule) {
+                module.pluginManager.apply('io.freefair.aspectj.post-compile-weaving')
                 module.dependencies {
                     compileOnly 'org.aspectj:aspectjweaver'
                     // not necessary but a nice to have for the ide to be aware of the classes being woven
