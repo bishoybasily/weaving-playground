@@ -19,7 +19,7 @@ public class CalculatorAspect {
 
   @Around(
       """
-            execution(protected final Integer com.gmail.bishoybasily.playground.weaving.calculator.Calculator.sum(Integer, Integer))
+            execution(private Integer com.gmail.bishoybasily.playground.weaving.calculator.Calculator.sum(Integer, Integer))
             &&
             args(num1, num2)
             """)
