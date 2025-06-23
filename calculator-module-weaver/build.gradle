@@ -1,9 +1,13 @@
 plugins {
     id 'java'
-    id 'conventions-weaving'
+    id 'io.freefair.aspectj.post-compile-weaving'
 }
 
 dependencies {
+
+    compileOnly 'org.aspectj:aspectjweaver'
+    compileOnly files("${project(':calculator-module').buildDir.path}/classes/java/main")
+
 
     implementation project(":feature-flags")
 

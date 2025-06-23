@@ -1,14 +1,25 @@
 plugins {
     id 'java'
-    id 'conventions-weaving'
+    id 'io.freefair.aspectj.post-compile-weaving'
 }
 
 dependencies {
+
+    aspect project(":calculator-module-weaver")
+    implementation project(":calculator-module-weaver")
+    testImplementation project(":calculator-module-weaver")
+    implementation 'org.aspectj:aspectjrt'
 
     implementation project(":feature-flags")
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+tasks.named('compileJava') {
+    ajc.options.compilerArgs += "-showWeaveInfo"
+    ajc.options.compilerArgs += "-verbose"
+    ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
 }
 
 test {
