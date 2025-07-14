@@ -1,9 +1,8 @@
-package com.gmail.bishoybasily.playground.weaving.calculator.aspect;
+package com.gmail.bishoybasily.playground.weaving.calculator.weaver;
 
 import static com.gmail.bishoybasily.playground.weaving.FeatureFlags.FEATURE_CALCULATOR_SUBTRACT;
 import static com.gmail.bishoybasily.playground.weaving.FeatureFlags.isFeatureEnabled;
 
-import java.awt.*;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -25,6 +24,8 @@ public class CalculatorAspect {
             """)
   public Object featureCalculatorSubtract(ProceedingJoinPoint joinPoint, Integer num1, Integer num2)
       throws Throwable {
+
+    System.out.println(joinPoint.getTarget().getClass().getName());
 
     if (isFeatureEnabled(FEATURE_CALCULATOR_SUBTRACT))
       return calculatorDifferent.subtract(num1, num2);

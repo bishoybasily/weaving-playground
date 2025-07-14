@@ -1,14 +1,20 @@
 plugins {
     id 'java'
-    id 'io.freefair.aspectj.post-compile-weaving'
+    id 'conventions-weaving'
 }
+
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src/main/java', 'src/main/aspect']
+//        }
+//    }
+//}
 
 dependencies {
 
-    aspect project(":calculator-module-weaver")
-    implementation project(":calculator-module-weaver")
-    testImplementation project(":calculator-module-weaver")
-    implementation 'org.aspectj:aspectjrt'
+//    compileOnly 'org.aspectj:aspectjweaver'
+//    implementation 'org.aspectj:aspectjrt'
 
     implementation project(":feature-flags")
 
@@ -16,11 +22,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-tasks.named('compileJava') {
-    ajc.options.compilerArgs += "-showWeaveInfo"
-    ajc.options.compilerArgs += "-verbose"
-    ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
-}
+//tasks.named('compileJava') {
+//    ajc.options.compilerArgs += "-showWeaveInfo"
+//    ajc.options.compilerArgs += "-verbose"
+//    ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
+//}
 
 test {
     useJUnitPlatform()
