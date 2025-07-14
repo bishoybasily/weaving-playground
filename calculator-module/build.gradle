@@ -3,30 +3,13 @@ plugins {
     id 'conventions-weaving'
 }
 
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs = ['src/main/java', 'src/main/aspect']
-//        }
-//    }
-//}
-
 dependencies {
-
-//    compileOnly 'org.aspectj:aspectjweaver'
-//    implementation 'org.aspectj:aspectjrt'
 
     implementation project(":feature-flags")
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
-
-//tasks.named('compileJava') {
-//    ajc.options.compilerArgs += "-showWeaveInfo"
-//    ajc.options.compilerArgs += "-verbose"
-//    ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
-//}
 
 test {
     useJUnitPlatform()
