@@ -1,16 +1,15 @@
 plugins {
     id 'java'
 
-    id 'io.freefair.aspectj' version '8.13.1' apply false
-
-    id "com.diffplug.spotless" version "6.25.0" apply false
-
+    alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.freefair.aspectj) apply false
 }
 
 allprojects {
     group = 'com.gmail.bishoybasily.playground.weaving'
     version = '1.0-SNAPSHOT'
 }
+
 
 subprojects {
     apply plugin: 'java'
@@ -22,12 +21,6 @@ subprojects {
         }
     }
 
-    dependencies {
-        constraints {
-            implementation 'org.aspectj:aspectjrt:1.9.22.1'
-            implementation 'org.aspectj:aspectjweaver:1.9.22.1'
-        }
-    }
 
     configurations {
         compileOnly {

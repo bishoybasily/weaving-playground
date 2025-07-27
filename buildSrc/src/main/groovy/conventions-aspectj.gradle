@@ -1,0 +1,34 @@
+plugins {
+    id 'io.freefair.aspectj.post-compile-weaving'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/main/aspect']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java', 'src/test/aspect']
+        }
+    }
+}
+
+dependencies {
+    compileOnly libs.aspectjweaver
+    implementation libs.aspectjrt
+}
+
+def COMPILER_EXTRA_ARGS = [
+        "-showWeaveInfo",
+        "-verbose",
+        "-Xlint:adviceDidNotMatch=error"
+]
+
+tasks.named('compileJava') {
+    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
+}
+tasks.named('compileTestJava') {
+    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
+}

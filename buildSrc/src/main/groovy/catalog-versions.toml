@@ -1,0 +1,13 @@
+[versions]
+freefair = "8.13.1"
+spotless = "6.25.0"
+aspectjrt = "1.9.22.1"
+aspectjweaver = "1.9.22.1"
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+freefair-aspectj = { id = "io.freefair.aspectj", version.ref = "freefair" }
+
+[libraries]
+aspectjrt = { module = "org.aspectj:aspectjrt", version.ref = "aspectjrt" }
+aspectjweaver = { module = "org.aspectj:aspectjweaver", version.ref = "aspectjweaver" }

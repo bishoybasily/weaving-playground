@@ -1,7 +1,14 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+
 class ConventionsWeaving implements Plugin<Project> {
+
+    private static final var COMPILER_EXTRA_ARGS = [
+            "-showWeaveInfo",
+            "-verbose",
+            "-Xlint:adviceDidNotMatch=error"
+    ]
 
     void apply(Project module) {
 
@@ -14,18 +21,14 @@ class ConventionsWeaving implements Plugin<Project> {
             }
         }
         module.dependencies {
-            compileOnly 'org.aspectj:aspectjweaver'
-            implementation 'org.aspectj:aspectjrt'
+            compileOnly module.libs.aspectjweaver
+            implementation module.libs.aspectjrt
         }
         module.tasks.named('compileJava') {
-            ajc.options.compilerArgs += "-showWeaveInfo"
-            ajc.options.compilerArgs += "-verbose"
-            ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
+            ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
         }
         module.tasks.named('compileTestJava') {
-            ajc.options.compilerArgs += "-showWeaveInfo"
-            ajc.options.compilerArgs += "-verbose"
-            ajc.options.compilerArgs += "-Xlint:adviceDidNotMatch=error"
+            ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
         }
 
     }

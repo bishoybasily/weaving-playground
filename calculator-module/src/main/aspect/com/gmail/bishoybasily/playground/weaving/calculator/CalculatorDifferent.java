@@ -1,4 +1,4 @@
-package com.gmail.bishoybasily.playground.weaving.calculator.weaver;
+package com.gmail.bishoybasily.playground.weaving.calculator;
 
 public class CalculatorDifferent {
 

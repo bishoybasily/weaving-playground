@@ -10,7 +10,7 @@ public class Calculator {
     return sum(num1, num2);
   }
 
-  private Integer sum(Integer num1, Integer num2) {
+  Integer sum(Integer num1, Integer num2) {
     return num1 + num2;
   }
 }
