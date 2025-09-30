@@ -10,14 +10,18 @@ sourceSets {
     }
     test {
         java {
-            srcDirs = ['src/test/java', 'src/test/aspect']
+            srcDirs = ['src/test/java', 'src/main/aspect']
         }
     }
 }
 
+configurations {
+    aspectjWeaver
+}
+
 dependencies {
-    compileOnly libs.aspectjweaver
     implementation libs.aspectjrt
+    aspectjWeaver libs.aspectjweaver
 }
 
 def COMPILER_EXTRA_ARGS = [

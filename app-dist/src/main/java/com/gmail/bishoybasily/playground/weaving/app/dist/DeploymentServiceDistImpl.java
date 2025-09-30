@@ -5,7 +5,7 @@ import com.gmail.bishoybasily.playground.weaving.app.JobService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DeploymentServiceImpl implements DeploymentService {
+public class DeploymentServiceDistImpl implements DeploymentService {
 
   private final JobService jobService;
 
