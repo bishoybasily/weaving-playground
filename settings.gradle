@@ -11,13 +11,14 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    versionCatalogs {
+        libs {
+            from(files("buildSrc/src/main/groovy/catalog-versions.toml"))
+        }
+    }
 }
 
 rootProject.name = 'weaving-playground'
 
-include 'main-module'
-
-include 'calculator-module'
-include 'calculator-module-weaver'
-
-include 'feature-flags'
+include 'app'
+include 'app-dist'
