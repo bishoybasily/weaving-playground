@@ -2,9 +2,10 @@ plugins {
 
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
+
 }
 
-bootJar {
+springBoot {
     mainClass = "com.gmail.bishoybasily.playground.weaving.app.WeavingPlaygroundApplication"
 }
 

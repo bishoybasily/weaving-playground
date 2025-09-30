@@ -7,19 +7,19 @@ plugins {
 
 }
 
-bootJar {
+springBoot {
     mainClass = "com.gmail.bishoybasily.playground.weaving.app.WeavingPlaygroundApplication"
+}
+
+bootJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 dependencies {
 
     implementation(project(':app'))
 
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    implementation 'org.springframework:spring-context'
-
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     compileOnly 'org.projectlombok:lombok'
@@ -27,4 +27,15 @@ dependencies {
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+}
+
+def COMPILER_EXTRA_ARGS = [
+        "-inpath", project(":app").tasks.named("bootJar").get().archiveFile.get().asFile.absolutePath
+]
+
+tasks.named('compileJava') {
+    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
+}
+tasks.named('compileTestJava') {
+    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
 }

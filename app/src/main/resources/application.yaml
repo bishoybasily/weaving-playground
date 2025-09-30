@@ -1,3 +1,5 @@
 spring:
   application:
     name: weaving-playground
+  main:
+    allow-bean-definition-overriding: true

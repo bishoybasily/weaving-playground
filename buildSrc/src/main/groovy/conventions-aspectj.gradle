@@ -15,13 +15,13 @@ sourceSets {
     }
 }
 
-//configurations {
-//    aspectjWeaver
-//}
+configurations {
+    aspectjWeaver
+}
 
 dependencies {
     implementation libs.aspectjrt
-//    aspectjWeaver libs.aspectjweaver
+    aspectjWeaver libs.aspectjweaver
     compileOnly libs.aspectjweaver
 
 }

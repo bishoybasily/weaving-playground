@@ -9,7 +9,6 @@ public class DeploymentServiceImpl implements DeploymentService {
 
   @Override
   public void print() {
-    System.out.printf(
-        "Deployment service from app module, total jobs are: %d%n", jobService.getNumJobs());
+    System.out.printf("Total jobs are: %d%n", jobService.getNumJobs());
   }
 }
