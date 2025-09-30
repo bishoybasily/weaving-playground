@@ -20,7 +20,5 @@ dependencyResolutionManagement {
 
 rootProject.name = 'weaving-playground'
 
-include 'main-module'
-include 'calculator-module'
-include 'feature-flags'
-
+include 'app'
+include 'app-dist'

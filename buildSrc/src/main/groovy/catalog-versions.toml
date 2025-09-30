@@ -1,5 +1,5 @@
 [versions]
-freefair = "8.13.1"
+freefair = "9.0.0"
 spotless = "8.0.0"
 aspectjrt = "1.9.22.1"
 aspectjweaver = "1.9.22.1"
