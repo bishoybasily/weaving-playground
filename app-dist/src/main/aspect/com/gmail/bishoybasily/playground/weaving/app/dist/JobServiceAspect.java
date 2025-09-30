@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 public class JobServiceAspect {
 
   @Around("call(public int com.gmail.bishoybasily.playground.weaving.app.JobService.getNumJobs())")
-  public Object getNumJobs(ProceedingJoinPoint joinPoint) throws Throwable {
+  public Object getNumJobs(ProceedingJoinPoint joinPoint) {
     return 50;
   }
 }
