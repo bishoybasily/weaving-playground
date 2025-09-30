@@ -17,24 +17,48 @@ sourceSets {
 
 configurations {
     aspectjWeaver
+    weavingImplementation {
+        extendsFrom implementation
+    }
 }
 
 dependencies {
     implementation libs.aspectjrt
     aspectjWeaver libs.aspectjweaver
     compileOnly libs.aspectjweaver
-
 }
 
 def COMPILER_EXTRA_ARGS = [
-        "-showWeaveInfo",
-        "-verbose",
+//        "-showWeaveInfo",
+//        "-verbose",
         "-Xlint:adviceDidNotMatch=error"
 ]
 
-tasks.named('compileJava') {
-    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
-}
-tasks.named('compileTestJava') {
-    ajc.options.compilerArgs += COMPILER_EXTRA_ARGS
+afterEvaluate {
+
+    configurations.weavingImplementation.dependencies.forEach {
+
+        var module = project(":" + it.name)
+        var moduleBootJarTask = module.tasks.named("bootJar")
+
+        def COMPILER_INPATH_ARGS = [
+                "-inpath", moduleBootJarTask.get().archiveFile.get().asFile.absolutePath
+        ]
+
+        tasks.named('compileJava') {
+            dependsOn(moduleBootJarTask)
+            ajc.options.compilerArgs
+                    += COMPILER_EXTRA_ARGS
+                    += COMPILER_INPATH_ARGS
+        }
+
+        tasks.named('compileTestJava') {
+            dependsOn(moduleBootJarTask)
+            ajc.options.compilerArgs
+                    += COMPILER_EXTRA_ARGS
+                    += COMPILER_INPATH_ARGS
+        }
+
+    }
+
 }
