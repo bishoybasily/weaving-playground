@@ -20,8 +20,7 @@ bootJar {
 
 dependencies {
 
-//    implementation(project(':app')) // IntelliJ doesn't see weavingImplementation as implementation
-    weavingImplementation(project(':app'))
+    weavingFullImplementation(project(':app'))
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

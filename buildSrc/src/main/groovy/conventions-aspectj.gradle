@@ -17,7 +17,10 @@ sourceSets {
 
 configurations {
     aspectjWeaver
-    weavingImplementation.extendsFrom implementation
+    weavingFullImplementation
+
+    implementation.extendsFrom weavingFullImplementation
+    testImplementation.extendsFrom weavingFullImplementation
 }
 
 dependencies {
@@ -27,8 +30,8 @@ dependencies {
 }
 
 def COMPILER_EXTRA_ARGS = [
-//        "-showWeaveInfo",
-//        "-verbose",
+        "-showWeaveInfo",
+        "-verbose",
         "-Xlint:adviceDidNotMatch=error"
 ]
 
@@ -44,7 +47,7 @@ tasks.named('compileTestJava') {
 
 afterEvaluate {
 
-    configurations.weavingImplementation.dependencies.forEach {
+    configurations.weavingFullImplementation.dependencies.forEach {
 
         var module = project(":" + it.name)
         var moduleBootJarTask = module.tasks.named("bootJar")
