@@ -5,27 +5,25 @@ plugins {
 sourceSets {
     main {
         java {
-            srcDirs = ['src/main/java', 'src/main/aspect']
+            srcDirs = ['src/main/java', 'src/aspect']
         }
     }
     test {
         java {
-            srcDirs = ['src/test/java', 'src/main/aspect']
+            srcDirs = ['src/test/java', 'src/aspect']
         }
     }
 }
 
 configurations {
     aspectjWeaver
-    weavingImplementation {
-        extendsFrom implementation
-    }
+    weavingImplementation.extendsFrom implementation
 }
 
 dependencies {
     implementation libs.aspectjrt
-    aspectjWeaver libs.aspectjweaver
     compileOnly libs.aspectjweaver
+    aspectjWeaver libs.aspectjweaver
 }
 
 def COMPILER_EXTRA_ARGS = [
@@ -34,6 +32,16 @@ def COMPILER_EXTRA_ARGS = [
         "-Xlint:adviceDidNotMatch=error"
 ]
 
+tasks.named('compileJava') {
+    ajc.options.compilerArgs
+            += COMPILER_EXTRA_ARGS
+}
+
+tasks.named('compileTestJava') {
+    ajc.options.compilerArgs
+            += COMPILER_EXTRA_ARGS
+}
+
 afterEvaluate {
 
     configurations.weavingImplementation.dependencies.forEach {
@@ -41,22 +49,20 @@ afterEvaluate {
         var module = project(":" + it.name)
         var moduleBootJarTask = module.tasks.named("bootJar")
 
-        def COMPILER_INPATH_ARGS = [
+        def COMPILER_INPATH_ARG = [
                 "-inpath", moduleBootJarTask.get().archiveFile.get().asFile.absolutePath
         ]
 
         tasks.named('compileJava') {
             dependsOn(moduleBootJarTask)
             ajc.options.compilerArgs
-                    += COMPILER_EXTRA_ARGS
-                    += COMPILER_INPATH_ARGS
+                    += COMPILER_INPATH_ARG
         }
 
         tasks.named('compileTestJava') {
             dependsOn(moduleBootJarTask)
             ajc.options.compilerArgs
-                    += COMPILER_EXTRA_ARGS
-                    += COMPILER_INPATH_ARGS
+                    += COMPILER_INPATH_ARG
         }
 
     }

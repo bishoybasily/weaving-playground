@@ -1,4 +1,4 @@
-package com.gmail.bishoybasily.playground.weaving.app.dist;
+package com.gmail.bishoybasily.playground.weaving.app;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

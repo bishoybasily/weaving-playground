@@ -1,6 +1,5 @@
-package com.gmail.bishoybasily.playground.weaving.app.dist;
+package com.gmail.bishoybasily.playground.weaving.app;
 
-import com.gmail.bishoybasily.playground.weaving.app.JobService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
