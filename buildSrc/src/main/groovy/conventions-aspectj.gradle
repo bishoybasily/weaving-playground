@@ -17,10 +17,10 @@ sourceSets {
 
 configurations {
     aspectjWeaver
-    weavingFullImplementation
+    weavingCompleteImplementation
 
-    implementation.extendsFrom weavingFullImplementation
-    testImplementation.extendsFrom weavingFullImplementation
+    implementation.extendsFrom weavingCompleteImplementation
+    testImplementation.extendsFrom weavingCompleteImplementation
 }
 
 dependencies {
@@ -47,7 +47,7 @@ tasks.named('compileTestJava') {
 
 afterEvaluate {
 
-    configurations.weavingFullImplementation.dependencies.forEach {
+    configurations.weavingCompleteImplementation.dependencies.forEach {
 
         var module = project(":" + it.name)
         var moduleBootJarTask = module.tasks.named("bootJar")
