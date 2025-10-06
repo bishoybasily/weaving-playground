@@ -8,7 +8,7 @@ public class DeploymentServiceImpl implements DeploymentService {
   private final JobService jobService;
 
   @Override
-  public void print() {
-    System.out.printf("Total jobs are: %d%n", jobService.getNumJobs());
+  public String print() {
+    return "Total jobs are: %d%n".formatted(jobService.getNumJobs());
   }
 }

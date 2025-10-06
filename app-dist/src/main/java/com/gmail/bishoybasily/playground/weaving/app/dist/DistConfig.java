@@ -1,4 +1,6 @@
-package com.gmail.bishoybasily.playground.weaving.app;
+package com.gmail.bishoybasily.playground.weaving.app.dist;
+
+import com.gmail.bishoybasily.playground.weaving.app.DeploymentService;
 
 // import org.springframework.context.annotation.Bean;
 // import org.springframework.context.annotation.Configuration;

@@ -5,12 +5,18 @@ plugins {
 sourceSets {
     main {
         java {
-            srcDirs = ['src/main/java', 'src/aspect']
+            srcDirs = [
+                    'src/main/java',
+                    'src/main/aspect'
+            ]
         }
     }
     test {
         java {
-            srcDirs = ['src/test/java', 'src/aspect']
+            srcDirs = [
+                    'src/main/java', 'src/test/java',
+                    'src/main/aspect', 'src/test/java'
+            ]
         }
     }
 }
@@ -50,20 +56,20 @@ afterEvaluate {
     configurations.weavingCompleteImplementation.dependencies.forEach {
 
         var module = project(":" + it.name)
-        var moduleBootJarTask = module.tasks.named("bootJar")
+        var moduleJarTask = module.tasks.named("jar")
 
         def COMPILER_INPATH_ARG = [
-                "-inpath", moduleBootJarTask.get().archiveFile.get().asFile.absolutePath
+                "-inpath", moduleJarTask.get().archiveFile.get().asFile.absolutePath
         ]
 
         tasks.named('compileJava') {
-            dependsOn(moduleBootJarTask)
+            dependsOn(moduleJarTask)
             ajc.options.compilerArgs
                     += COMPILER_INPATH_ARG
         }
 
         tasks.named('compileTestJava') {
-            dependsOn(moduleBootJarTask)
+            dependsOn(moduleJarTask)
             ajc.options.compilerArgs
                     += COMPILER_INPATH_ARG
         }
