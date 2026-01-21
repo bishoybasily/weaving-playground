@@ -2,11 +2,11 @@
 plugins {
     id 'java'
 
-    alias(libs.plugins.spotless) apply false
-    alias(libs.plugins.freefair.aspectj) apply false
+    alias(catalog.plugins.spotless) apply false
+    alias(catalog.plugins.freefair.aspectj) apply false
 
-    alias(libs.plugins.spring.boot) apply false
-    alias(libs.plugins.spring.dependency.management) apply false
+    alias(catalog.plugins.spring.boot) apply false
+    alias(catalog.plugins.spring.dependency.management) apply false
 }
 
 allprojects {

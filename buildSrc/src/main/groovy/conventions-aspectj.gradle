@@ -24,9 +24,9 @@ configurations {
 }
 
 dependencies {
-    implementation libs.aspectjrt
-    compileOnly libs.aspectjweaver
-    aspectjWeaver libs.aspectjweaver
+    implementation catalog.aspectjrt
+    compileOnly catalog.aspectjweaver
+    aspectjWeaver catalog.aspectjweaver
 }
 
 def COMPILER_EXTRA_ARGS = [
