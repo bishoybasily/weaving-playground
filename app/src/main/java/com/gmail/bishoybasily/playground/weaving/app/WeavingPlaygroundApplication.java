@@ -15,7 +15,7 @@ public class WeavingPlaygroundApplication {
   @Bean
   CommandLineRunner runner(DeploymentService deploymentService) {
     return args -> {
-      deploymentService.print();
+      System.out.println(deploymentService.print());
     };
   }
 }
