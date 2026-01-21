@@ -5,18 +5,12 @@ plugins {
 sourceSets {
     main {
         java {
-            srcDirs = [
-                    'src/main/java',
-                    'src/main/aspect'
-            ]
+            srcDirs = ['src/main/java', 'src/aspect']
         }
     }
     test {
         java {
-            srcDirs = [
-                    'src/main/java', 'src/test/java',
-                    'src/main/aspect', 'src/test/java'
-            ]
+            srcDirs = ['src/test/java', 'src/aspect']
         }
     }
 }
@@ -30,9 +24,9 @@ configurations {
 }
 
 dependencies {
-    implementation libs.aspectjrt
-    compileOnly libs.aspectjweaver
-    aspectjWeaver libs.aspectjweaver
+    implementation catalog.aspectjrt
+    compileOnly catalog.aspectjweaver
+    aspectjWeaver catalog.aspectjweaver
 }
 
 def COMPILER_EXTRA_ARGS = [
@@ -56,20 +50,20 @@ afterEvaluate {
     configurations.weavingCompleteImplementation.dependencies.forEach {
 
         var module = project(":" + it.name)
-        var moduleJarTask = module.tasks.named("jar")
+        var moduleBootJarTask = module.tasks.named("bootJar")
 
         def COMPILER_INPATH_ARG = [
-                "-inpath", moduleJarTask.get().archiveFile.get().asFile.absolutePath
+                "-inpath", moduleBootJarTask.get().archiveFile.get().asFile.absolutePath
         ]
 
         tasks.named('compileJava') {
-            dependsOn(moduleJarTask)
+            dependsOn(moduleBootJarTask)
             ajc.options.compilerArgs
                     += COMPILER_INPATH_ARG
         }
 
         tasks.named('compileTestJava') {
-            dependsOn(moduleJarTask)
+            dependsOn(moduleBootJarTask)
             ajc.options.compilerArgs
                     += COMPILER_INPATH_ARG
         }

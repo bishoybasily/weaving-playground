@@ -12,8 +12,8 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
     versionCatalogs {
-        libs {
-            from(files("buildSrc/src/main/groovy/catalog-versions.toml"))
+        catalog {
+            from(files("catalog.toml"))
         }
     }
 }
